@@ -1,6 +1,6 @@
 <?php
 
-namespace Esc\Entity\ValueObjects;
+namespace Esc\User\Entity\ValueObjects;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
