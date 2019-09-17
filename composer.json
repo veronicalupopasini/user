@@ -22,6 +22,7 @@
     },
     "require": {
         "php": "^7.1",
+        "beberlei/assert": "^3.2",
         "doctrine/doctrine-bundle": "^1.11",
         "doctrine/orm": "^2.6",
         "nesbot/carbon": "^2.24",
