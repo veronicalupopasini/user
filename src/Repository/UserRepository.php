@@ -4,6 +4,8 @@ namespace Esc\User\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query\QueryException;
 use Esc\User\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
@@ -24,7 +26,7 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @param AttributeBag $parameters
      * @return mixed
-     * @throws \Doctrine\ORM\Query\QueryException
+     * @throws QueryException
      */
     public function findByCriteria(AttributeBag $parameters)
     {
@@ -38,9 +40,9 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @param int $id
      * @return mixed
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function findOneById(int $id)
+    public function readOneById(int $id)
     {
         return $this->createQueryBuilder('user')
             ->select('user.id', 'user.active', 'user.email', 'user.roles', 'user.username')
@@ -48,6 +50,15 @@ class UserRepository extends ServiceEntityRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function findOneById(int $id)
+    {
+        return $this->findOneBy(['id' => $id]);
     }
 
     public function countByCriteria(array $filters): int

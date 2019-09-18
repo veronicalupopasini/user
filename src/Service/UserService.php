@@ -4,7 +4,6 @@ namespace Esc\User\Service;
 
 use Assert\AssertionFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\NonUniqueResultException;
 use Esc\User\Entity\ValueObjects\ChangePasswords;
 use Esc\User\Entity\ValueObjects\ComparePasswords;
 use Esc\User\Entity\ValueObjects\Email;
@@ -48,7 +47,6 @@ class UserService
      * @param int $id
      * @param AttributeBag $data
      * @throws AssertionFailedException
-     * @throws NonUniqueResultException
      */
     public function updateUser(int $id, AttributeBag $data): void
     {
@@ -77,7 +75,6 @@ class UserService
 
     /**
      * @param int $id
-     * @throws NonUniqueResultException
      */
     public function deleteUser(int $id): void
     {
@@ -93,7 +90,6 @@ class UserService
      * @param string $confirmPassword
      * @param string $oldPassword
      * @throws AssertionFailedException
-     * @throws NonUniqueResultException
      */
     public function changeUserPassword(int $id, string $newPassword, string $confirmPassword, string $oldPassword): void
     {

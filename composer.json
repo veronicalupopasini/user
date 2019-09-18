@@ -25,10 +25,15 @@
         "beberlei/assert": "^3.2",
         "doctrine/doctrine-bundle": "^1.11",
         "doctrine/orm": "^2.6",
+        "escsrl/requestparams": "^1.0",
+        "escsrl/result": "^1.0",
         "nesbot/carbon": "^2.24",
-        "symfony/security": "^4.3"
+        "sensio/framework-extra-bundle": "^5.4",
+        "symfony/security": "^4.3",
+        "symfony/serializer-pack": "^1.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
         "phpunit/phpunit": "^7.1"
     },
     "config": {
