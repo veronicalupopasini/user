@@ -34,7 +34,6 @@ class CreateUserCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        parent::execute($input, $output);
         $helper = $this->getHelper('question');
         $username = new Question('Username: ');
         $password = new Question('Password: ');
