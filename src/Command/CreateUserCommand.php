@@ -80,5 +80,7 @@ class CreateUserCommand extends Command
         $attributeBag->initialize($userData);
 
         $this->userService->createUser($attributeBag);
+
+        return 0;
     }
 }
