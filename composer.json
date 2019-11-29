@@ -2,7 +2,11 @@
     "name": "escsrl/user",
     "type": "library",
     "description": "Symfony base user configuration",
-    "keywords": ["user", "symfony", "symfony-user"],
+    "keywords": [
+        "user",
+        "symfony",
+        "symfony-user"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -37,5 +41,6 @@
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "version": "2.0.0"
 }
