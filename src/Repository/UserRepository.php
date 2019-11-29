@@ -4,10 +4,10 @@ namespace Esc\User\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Esc\User\Entity\User;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 /**
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
