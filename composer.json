@@ -28,16 +28,16 @@
         "php": "^7.3",
         "beberlei/assert": "^3.2",
         "doctrine/doctrine-bundle": "^2.0",
-        "doctrine/orm": "^2.6",
+        "doctrine/orm": "^2.7",
         "escsrl/requestparams": "^2.0",
         "escsrl/result": "^1.0",
-        "nesbot/carbon": "^2.24",
-        "sensio/framework-extra-bundle": "^5.4",
-        "symfony/security-bundle": "^5.0.0",
+        "nesbot/carbon": "^2.27",
+        "sensio/framework-extra-bundle": "^5.5",
+        "symfony/security-bundle": "^5.0",
         "symfony/serializer-pack": "^1.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.2"
+        "doctrine/doctrine-fixtures-bundle": "^3.3"
     },
     "config": {
         "sort-packages": true
