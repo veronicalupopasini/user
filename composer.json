@@ -19,17 +19,12 @@
             "Esc\\User\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Esc\\Tests\\": "tests"
-        }
-    },
     "require": {
         "php": "^7.3",
         "beberlei/assert": "^3.2",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
-        "escsrl/requestparams": "^2.0",
+        "escsrl/requestparams": "dev-master",
         "escsrl/result": "^1.0",
         "nesbot/carbon": "^2.27",
         "sensio/framework-extra-bundle": "^5.5",
