@@ -3,7 +3,7 @@
 namespace Esc\User\Service;
 
 use Assert\AssertionFailedException;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Esc\User\Entity\ValueObjects\ChangePasswords;
 use Esc\User\Entity\ValueObjects\ComparePasswords;
 use Esc\User\Entity\ValueObjects\Email;
@@ -18,7 +18,7 @@ class UserService
     private $objectManager;
     private $userRepository;
 
-    public function __construct(ObjectManager $manager, UserRepository $userRepository)
+    public function __construct(EntityManagerInterface $manager, UserRepository $userRepository)
     {
         $this->objectManager = $manager;
         $this->userRepository = $userRepository;
