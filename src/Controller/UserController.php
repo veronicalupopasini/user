@@ -33,7 +33,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user", name="fetch_users", methods={"GET"})
+     * @Route("/api/users", name="fetch_users", methods={"GET"})
      * @param Request $request
      * @param NormalizerInterface $normalizer
      * @param Result $result
@@ -57,7 +57,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/{id}", name="get_user", methods={"GET"})
+     * @Route("/api/users/{id}", name="get_user", methods={"GET"})
      * @param int $id
      * @param NormalizerInterface $normalizer
      * @param Result $result
@@ -82,7 +82,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user", name="create_user", methods={"POST"})
+     * @Route("/api/users", name="create_user", methods={"POST"})
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
@@ -105,7 +105,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/{id}", name="update_user", methods={"PUT"})
+     * @Route("/api/users/{id}", name="update_user", methods={"PUT"})
      * @param int $id
      * @param Request $request
      * @param Result $result
@@ -129,7 +129,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/{id}", name="delete_user", methods={"DELETE"})
+     * @Route("/api/users/{id}", name="delete_user", methods={"DELETE"})
      * @param int $id
      * @param Result $result
      * @return JsonResponse
@@ -147,7 +147,7 @@ final class UserController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/changepassword/{id}", name="change_user_password", methods={"PUT"})
+     * @Route("/api/users/{id}/changepassword", name="change_user_password", methods={"PUT"})
      * @param int $id
      * @param Request $request
      * @param Result $result
