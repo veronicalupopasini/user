@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/escsrl/user/compare/v2.0.1...v2.1.0) (2019-12-04)
+
+
+### Features
+
+* user routes now follow rest api naming conventions ([f8374de](https://github.com/escsrl/user/commit/f8374de0bed00f3b50f9ee902a7e5ae2eea39e81))
+
+
+### Bug Fixes
+
+* EntityManagerInterface upgrade ([964404c](https://github.com/escsrl/user/commit/964404c65c7baf22de1f2973556b1f3f64147bf3))
+* ManagerRegistry upgrade ([6c3d065](https://github.com/escsrl/user/commit/6c3d065325255160a045efb2dee3ecef98ac652e))
+* replaced security to security bundle ([6a54171](https://github.com/escsrl/user/commit/6a541710ef3cbe219ae45a5bc4e6b15381ce7b02))
+* return 0 instead of null as symfony 5 rule ([492974e](https://github.com/escsrl/user/commit/492974e19df1527e6d2d3d1943b6c85e5468d595))
+* username has now a unique validator ([69b7967](https://github.com/escsrl/user/commit/69b796781003213381e479d91eea738c6a4f06b5))
+
 ### [2.0.1](https://github.com/escsrl/user/compare/v2.0.0...v2.0.1) (2019-11-29)
 
 
