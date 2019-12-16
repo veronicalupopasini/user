@@ -91,7 +91,7 @@ final class UserController extends AbstractController
     public function createUser(Request $request, Result $result): Response
     {
         try {
-            $userData = $request->request->all();
+            $userData = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
             $userDataBag = new AttributeBag();
             $userDataBag->initialize($userData);
 
@@ -115,7 +115,7 @@ final class UserController extends AbstractController
     public function updateUser(int $id, Request $request, Result $result): Response
     {
         try {
-            $userData = $request->request->all();
+            $userData = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
             $userDataBag = new AttributeBag();
             $userDataBag->initialize($userData);
 
