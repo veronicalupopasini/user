@@ -19,4 +19,12 @@ interface EscUserService
      * @param int $id
      */
     public function deleteUser(int $id): void;
+
+    /**
+     * @param int $id
+     * @param string $newPassword
+     * @param string $confirmPassword
+     * @param string $oldPassword
+     */
+    public function changeUserPassword(int $id, string $newPassword, string $confirmPassword, string $oldPassword): void;
 }

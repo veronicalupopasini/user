@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass="Esc\User\Repository\UserRepository")
  * @UniqueEntity("username")
  */
-class User implements UserInterface
+class User implements UserInterface, EscUser
 {
     /**
      * @var int
