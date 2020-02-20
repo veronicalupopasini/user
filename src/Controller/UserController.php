@@ -3,8 +3,8 @@
 namespace Esc\User\Controller;
 
 use Assert\AssertionFailedException;
-use Esc\User\Repository\UserRepository;
-use Esc\User\Service\UserService;
+use Esc\User\Repository\EscUserRepository;
+use Esc\User\Service\EscUserService;
 use Esc\RequestParams;
 use Esc\Result;
 use Exception;
@@ -26,7 +26,7 @@ final class UserController extends AbstractController
     private $userRepository;
     private $userService;
 
-    public function __construct(UserRepository $userRepository, UserService $userService)
+    public function __construct(EscUserRepository $userRepository, EscUserService $userService)
     {
         $this->userRepository = $userRepository;
         $this->userService = $userService;
