@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
 use Esc\User\Entity\User;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 /**
@@ -16,7 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository implements EscUserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -66,7 +67,7 @@ class UserRepository extends ServiceEntityRepository
         return count($this->matching($this->getFiltersCriteria($filters)));
     }
 
-    private function getFiltersCriteria(array $filters): Criteria
+    public function getFiltersCriteria(array $filters): Criteria
     {
         $criteria = Criteria::create();
 
@@ -78,7 +79,7 @@ class UserRepository extends ServiceEntityRepository
         return $criteria;
     }
 
-    private function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
+    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
     {
         return $this->getFiltersCriteria($parameters->get('filters'))
             ->orderBy($parameters->get('sortBy'))
@@ -86,12 +87,12 @@ class UserRepository extends ServiceEntityRepository
             ->setFirstResult($parameters->get('offset'));
     }
 
-    private function getUsernameCriteria(Criteria $criteria, string $username): Criteria
+    public function getUsernameCriteria(Criteria $criteria, string $username): Criteria
     {
         return $criteria->andWhere(Criteria::expr()->startsWith('username', $username));
     }
 
-    private function getActiveCriteria(Criteria $criteria, string $active): Criteria
+    public function getActiveCriteria(Criteria $criteria, string $active): Criteria
     {
         if ($active === 'Y') {
             return $criteria->andWhere(Criteria::expr()->eq('active', true));
@@ -104,11 +105,25 @@ class UserRepository extends ServiceEntityRepository
         return $criteria;
     }
 
-    private function prepareFiltersCriteria(array $filters): AttributeBag
+    public function prepareFiltersCriteria(array $filters): AttributeBag
     {
         $filtersBag = new AttributeBag();
         $filtersBag->initialize($filters);
 
         return $filtersBag;
+    }
+
+    /**
+     * @param int $id
+     * @return User
+     * @throws RuntimeException
+     */
+    public function getOneById(int $id)
+    {
+        $user = $this->findOneById($id);
+        if ($user === null) {
+            throw new RuntimeException('User not found');
+        }
+        return $user;
     }
 }

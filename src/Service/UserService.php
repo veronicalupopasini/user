@@ -13,7 +13,7 @@ use Esc\User\Entity\ValueObjects\Roles;
 use Esc\User\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
-class UserService
+class UserService implements EscUserService
 {
     private $objectManager;
     private $userRepository;
@@ -28,7 +28,7 @@ class UserService
      * @param AttributeBag $data
      * @throws AssertionFailedException
      */
-    public function createUser(AttributeBag $data): void
+    public function createUser($data): void
     {
         $user = new User();
 
@@ -48,7 +48,7 @@ class UserService
      * @param AttributeBag $data
      * @throws AssertionFailedException
      */
-    public function updateUser(int $id, AttributeBag $data): void
+    public function updateUser(int $id, $data): void
     {
         $user = $this->userRepository->findOneById($id);
 
