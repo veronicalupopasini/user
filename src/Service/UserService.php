@@ -15,12 +15,14 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 class UserService implements EscUserService
 {
-    private $objectManager;
+    private $entityManager;
     private $userRepository;
+    private $user;
 
-    public function __construct(EntityManagerInterface $manager, UserRepository $userRepository)
+    public function __construct(EntityManagerInterface $manager, UserRepository $userRepository, User $user)
     {
-        $this->objectManager = $manager;
+        $this->entityManager = $manager;
+        $this->user = $user;
         $this->userRepository = $userRepository;
     }
 
@@ -30,17 +32,15 @@ class UserService implements EscUserService
      */
     public function createUser($data): void
     {
-        $user = new User();
-
-        $user->setUsername(new Username($data->get('username')));
-        $user->setPlainPassword(new ComparePasswords($data->get('password', ''), $data->get('confirmPassword', '')));
-        $user->setEmail(new Email($data->get('email')));
-        $user->setActive((bool)$data->get('active', false));
+        $this->user->setUsername(new Username($data->get('username')));
+        $this->user->setPlainPassword(new ComparePasswords($data->get('password', ''), $data->get('confirmPassword', '')));
+        $this->user->setEmail(new Email($data->get('email')));
+        $this->user->setActive((bool)$data->get('active', false));
         $roles = new Roles($data->get('roles'));
-        $user->setRoles($roles->get());
+        $this->user->setRoles($roles->get());
 
-        $this->objectManager->persist($user);
-        $this->objectManager->flush();
+        $this->entityManager->persist($this->user);
+        $this->entityManager->flush();
     }
 
     /**
@@ -50,7 +50,7 @@ class UserService implements EscUserService
      */
     public function updateUser(int $id, $data): void
     {
-        $user = $this->userRepository->findOneById($id);
+        $user = $this->userRepository->getOneById($id);
 
         if ($data->has('password') && !empty($data->get('password'))) {
             $user->setPlainPassword(new ComparePasswords($data->get('password', ''), $data->get('confirmPassword', '')));
@@ -69,8 +69,8 @@ class UserService implements EscUserService
             $user->setRoles($roles->get());
         }
 
-        $this->objectManager->persist($user);
-        $this->objectManager->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 
     /**
@@ -78,10 +78,10 @@ class UserService implements EscUserService
      */
     public function deleteUser(int $id): void
     {
-        $user = $this->userRepository->findOneById($id);
+        $user = $this->userRepository->getOneById($id);
 
-        $this->objectManager->remove($user);
-        $this->objectManager->flush();
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
     }
 
     /**
@@ -93,13 +93,13 @@ class UserService implements EscUserService
      */
     public function changeUserPassword(int $id, string $newPassword, string $confirmPassword, string $oldPassword): void
     {
-        $user = $this->userRepository->findOneById($id);
+        $user = $this->userRepository->getOneById($id);
 
         $savedPassword = $user->getPassword();
 
         $user->setPlainPassword(new ChangePasswords($oldPassword, $newPassword, $confirmPassword, $savedPassword));
 
-        $this->objectManager->persist($user);
-        $this->objectManager->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 }

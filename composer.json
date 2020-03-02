@@ -16,7 +16,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Esc\\User\\": "src/"
+            "Esc\\User\\": "src/",
+            "Test\\Esc\\User\\": "tests/"
+
         }
     },
     "require": {
@@ -27,14 +29,22 @@
         "doctrine/orm": "^2.7",
         "escsrl/requestparams": "^2.0",
         "escsrl/result": "^1.0",
+        "vlupopasini/repository": "dev-master",
         "nesbot/carbon": "^2.27",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/security-bundle": "^5.0",
         "symfony/serializer-pack": "^1.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3"
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "phpunit/phpunit": "^9.0"
     },
+    "repositories": [
+        {
+            "type":"vcs",
+            "url": "https://vlupopasini@bitbucket.org/vlupopasini/repository.git"
+        }
+    ],
     "config": {
         "sort-packages": true
     },
