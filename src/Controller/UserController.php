@@ -3,7 +3,7 @@
 namespace Esc\User\Controller;
 
 use Assert\AssertionFailedException;
-use Esc\User\Repository\DoctrineRepositoryManager;
+use Esc\Repository\DoctrineRepositoryManager;
 use Esc\User\Service\EscUserService;
 use Esc\RequestParams;
 use Esc\Result;
