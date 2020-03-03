@@ -2,7 +2,6 @@
 
 namespace Esc\User\Controller;
 
-use Assert\AssertionFailedException;
 use Esc\Repository\IdentityRepository;
 use Esc\User\Service\EscUserService;
 use Esc\RequestParams;
@@ -67,13 +66,7 @@ final class UserController extends AbstractController
     public function findUser(int $id, NormalizerInterface $normalizer, Result $result): Response
     {
         try {
-            $user = $this->userRepository->readOneById($id);
-            if ($user) {
-                $result->setData($normalizer->normalize($user));
-            } else {
-                throw new Exception('User not found');
-            }
-
+            $result->setData($normalizer->normalize($this->userRepository->getOneById($id)));
             return new JsonResponse($result->toArray());
         } catch (Exception $e) {
             $result->setMessage($e->getMessage());
@@ -86,7 +79,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function createUser(Request $request, Result $result): Response
     {
@@ -110,7 +102,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function updateUser(int $id, Request $request, Result $result): Response
     {
@@ -152,7 +143,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function changePassword(int $id, Request $request, Result $result): Response
     {

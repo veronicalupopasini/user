@@ -2,6 +2,8 @@
 
 namespace Esc\User\Service;
 
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
+
 interface EscUserService
 {
     /**
