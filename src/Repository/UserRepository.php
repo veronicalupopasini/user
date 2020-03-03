@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
-use Esc\Repository\IdentityRepository;
+use Esc\Repository\Repository;
 use Esc\User\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends IdentityRepository implements EscUserRepository
+class UserRepository extends Repository implements EscUserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
