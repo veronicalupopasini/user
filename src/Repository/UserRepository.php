@@ -2,15 +2,12 @@
 
 namespace Esc\User\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
-use Esc\Repository\CriteriaSearchableRepository;
-use Esc\Repository\IdentityRepository;
+use Esc\Repository\DoctrineRepositoryManager;
 use Esc\User\Entity\User;
-use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 /**
