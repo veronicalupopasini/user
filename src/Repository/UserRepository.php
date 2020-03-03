@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends IdentityRepository
+class UserRepository extends IdentityRepository implements EscUserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
