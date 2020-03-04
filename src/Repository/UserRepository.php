@@ -52,11 +52,6 @@ class UserRepository extends Repository implements EscUserRepository
             ->getOneOrNullResult();
     }
 
-    public function countByCriteria(array $filters): int
-    {
-        return count($this->matching($this->getFiltersCriteria($filters)));
-    }
-
     public function getFiltersCriteria(array $filters): Criteria
     {
         $criteria = Criteria::create();
@@ -67,14 +62,6 @@ class UserRepository extends Repository implements EscUserRepository
         $criteria = $this->getActiveCriteria($criteria, $filtersBag->get('active', '') ?? '');
 
         return $criteria;
-    }
-
-    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
-    {
-        return $this->getFiltersCriteria($parameters->get('filters'))
-            ->orderBy($parameters->get('sortBy'))
-            ->setMaxResults($parameters->get('limit'))
-            ->setFirstResult($parameters->get('offset'));
     }
 
     public function getUsernameCriteria(Criteria $criteria, string $username): Criteria
@@ -93,13 +80,5 @@ class UserRepository extends Repository implements EscUserRepository
         }
 
         return $criteria;
-    }
-
-    public function prepareFiltersCriteria(array $filters): AttributeBag
-    {
-        $filtersBag = new AttributeBag();
-        $filtersBag->initialize($filters);
-
-        return $filtersBag;
     }
 }
