@@ -66,7 +66,13 @@ final class UserController extends AbstractController
     public function findUser(int $id, NormalizerInterface $normalizer, Result $result): Response
     {
         try {
-            $result->setData($normalizer->normalize($this->userRepository->getOneById($id)));
+            $user = $this->userRepository->readOneById($id);
+            if ($user) {
+                $result->setData($normalizer->normalize($user));
+            } else {
+                throw new Exception('User not found');
+            }
+
             return new JsonResponse($result->toArray());
         } catch (Exception $e) {
             $result->setMessage($e->getMessage());
