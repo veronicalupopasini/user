@@ -18,7 +18,6 @@
         "psr-4": {
             "Esc\\User\\": "src/",
             "Test\\Esc\\User\\": "tests/"
-
         }
     },
     "require": {
