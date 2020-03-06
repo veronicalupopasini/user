@@ -2,7 +2,6 @@
 
 namespace Esc\User\Controller;
 
-use Assert\AssertionFailedException;
 use Esc\User\Repository\EscUserRepository;
 use Esc\User\Service\EscUserService;
 use Esc\RequestParams;
@@ -86,7 +85,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function createUser(Request $request, Result $result): Response
     {
@@ -110,7 +108,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function updateUser(int $id, Request $request, Result $result): Response
     {
@@ -152,7 +149,6 @@ final class UserController extends AbstractController
      * @param Request $request
      * @param Result $result
      * @return JsonResponse
-     * @throws AssertionFailedException
      */
     public function changePassword(int $id, Request $request, Result $result): Response
     {

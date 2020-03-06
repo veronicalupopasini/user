@@ -2,13 +2,12 @@
 
 namespace Esc\User\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\QueryException;
+use Esc\Repository\Repository;
 use Esc\User\Entity\User;
-use RuntimeException;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 /**
@@ -17,7 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository implements EscUserRepository
+class UserRepository extends Repository implements EscUserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -53,20 +52,6 @@ class UserRepository extends ServiceEntityRepository implements EscUserRepositor
             ->getOneOrNullResult();
     }
 
-    /**
-     * @param int $id
-     * @return mixed
-     */
-    public function findOneById(int $id)
-    {
-        return $this->findOneBy(['id' => $id]);
-    }
-
-    public function countByCriteria(array $filters): int
-    {
-        return count($this->matching($this->getFiltersCriteria($filters)));
-    }
-
     public function getFiltersCriteria(array $filters): Criteria
     {
         $criteria = Criteria::create();
@@ -77,14 +62,6 @@ class UserRepository extends ServiceEntityRepository implements EscUserRepositor
         $criteria = $this->getActiveCriteria($criteria, $filtersBag->get('active', '') ?? '');
 
         return $criteria;
-    }
-
-    public function getPaginatedAndFilteredCriteria(AttributeBag $parameters): Criteria
-    {
-        return $this->getFiltersCriteria($parameters->get('filters'))
-            ->orderBy($parameters->get('sortBy'))
-            ->setMaxResults($parameters->get('limit'))
-            ->setFirstResult($parameters->get('offset'));
     }
 
     public function getUsernameCriteria(Criteria $criteria, string $username): Criteria
@@ -103,27 +80,5 @@ class UserRepository extends ServiceEntityRepository implements EscUserRepositor
         }
 
         return $criteria;
-    }
-
-    public function prepareFiltersCriteria(array $filters): AttributeBag
-    {
-        $filtersBag = new AttributeBag();
-        $filtersBag->initialize($filters);
-
-        return $filtersBag;
-    }
-
-    /**
-     * @param int $id
-     * @return User
-     * @throws RuntimeException
-     */
-    public function getOneById(int $id)
-    {
-        $user = $this->findOneById($id);
-        if ($user === null) {
-            throw new RuntimeException('User not found');
-        }
-        return $user;
     }
 }

@@ -4,7 +4,6 @@ namespace Esc\User\Repository;
 
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
-use Zend\Code\Reflection\Exception\RuntimeException;
 
 interface EscUserRepository
 {
