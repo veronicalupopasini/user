@@ -32,8 +32,6 @@ class UserServiceTest extends TestCase
     {
         $this->addToAssertionCount(count($this->prophet->getProphecies()));
     }
-
-
     /**
      * @throws AssertionFailedException
      */
@@ -157,6 +155,7 @@ class UserServiceTest extends TestCase
 
     public function testDeleteUser(): void
     {
+
         $this->userRepository->getOneById(Argument::exact(1))
             ->willReturn($this->user)
             ->shouldBeCalled();
@@ -193,4 +192,23 @@ class UserServiceTest extends TestCase
         $this->addToAssertionCount(count($this->prophet->getProphecies()));
     }
 
+    public function testDeleteUserThrowException(): void
+    {
+        $entityManager = $this->getMockBuilder(EntityManagerInterface::class)
+            ->getMock();
+
+        $userRepository = $this->getMockBuilder(UserRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $userRepository->method('getOneById')
+            ->with(1)
+            ->willThrowException(new \RuntimeException());
+
+        $this->expectException(\RuntimeException::class);
+
+        $service = new UserService($entityManager, $userRepository, new User());
+
+        $service->deleteUser(1);
+    }
 }

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/escsrl/user/compare/v2.1.1...v3.0.0) (2020-02-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* symfony skeleton base configuration
+
+### Features
+
+* added interfaces ([2f2f762](https://github.com/escsrl/user/commit/2f2f762c82e6c20b816a84de28baa439f81f31ae)), closes [#1](https://github.com/escsrl/user/issues/1)
+
 ### [2.1.1](https://github.com/escsrl/user/compare/v2.1.0...v2.1.1) (2019-12-16)
 
 
